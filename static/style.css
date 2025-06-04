@@ -1,0 +1,273 @@
+/* File: static/css/style.css */
+
+/* ===== CSS VARIABLES ===== */
+:root {
+    --bg-dark: #111827;
+    --bg-light: #1f2937;
+    --text-light: #e5e7eb;
+    --accent-green: #10b981;
+    --accent-orange: #f97316;
+    --accent-blue: #3b82f6;
+    --accent-purple: #6366f1;
+    --flash-success: #047857;
+    --flash-error: #7f1d1d;
+    --button-bg: #000000;
+    --button-text: #ffffff;
+  }
+  
+  /* ===== RESET & BASE ===== */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1rem;
+  }
+  
+  /* ===== WRAPPER CONTAINER ===== */
+  .wrapper {
+    background: var(--bg-dark);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+  }
+  
+  .wrapper:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* ===== HEADER ===== */
+  header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .logo:hover {
+    transform: scale(1.1);
+  }
+  
+  h1 {
+    font-size: 2rem;
+    color: var(--accent-green);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* ===== FLASH MESSAGES ===== */
+  .flashes {
+    margin-bottom: 1rem;
+  }
+  
+  .flash {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .flash.success {
+    background: var(--flash-success);
+    color: #e6ffed;
+  }
+  
+  .flash.error {
+    background: var(--flash-error);
+    color: #fee2e2;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ===== FORM ===== */
+  .form label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    font-size: 1rem;
+  }
+  
+  .form input[type="file"] {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid #374151;
+    background: var(--bg-light);
+    color: var(--text-light);
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  
+  .form input[type="file"]:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    background: #2e3a52;
+  }
+  
+  /* ===== BUTTON (Gradient Wrapper) ===== */
+  .container {
+    position: relative;
+    display: inline-block;
+    padding: 3px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    border-radius: 0.9em;
+    transition: all 0.4s ease;
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+  
+  .container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    border-radius: 0.9em;
+    z-index: -1;
+    filter: blur(0);
+    transition: filter 0.4s ease;
+  }
+  
+  .container:hover::before {
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    filter: blur(1.2em);
+  }
+  
+  .container:active::before {
+    filter: blur(0.2em);
+  }
+  
+  button {
+    font-size: 1.2em;
+    padding: 0.6em 0.8em;
+    border-radius: 0.5em;
+    border: none;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    cursor: pointer;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
+    width: 100%;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    display: block;
+  }
+  
+  button:hover {
+    transform: translateY(-3px);
+    background-color: var(--accent-green);
+  }
+  
+  /* ===== RESULT SECTION ===== */
+  .result {
+    margin-top: 2rem;
+    text-align: center;
+    border-top: 1px solid #374151;
+    padding-top: 1.5rem;
+  }
+  
+  .result img {
+    width: 100%;
+    border: 3px solid var(--accent-green);
+    border-radius: 0.75rem;
+    transition: transform 0.3s ease;
+    margin-top: 1rem;
+  }
+  
+  .result img:hover {
+    transform: scale(1.02);
+  }
+  
+  /* COUNT TEXT (Wiring Length, etc.) */
+  .counts {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--text-light);
+  }
+  
+  .counts p {
+    margin: 0.5rem 0;
+  }
+  
+  /* WAYPOINT LIST */
+  .waypoint-list {
+    list-style: none;
+    margin-top: 0.5rem;
+  }
+  
+  .waypoint-list li {
+    background: #374151;
+    margin: 0.3rem 0;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.4rem;
+    font-size: 0.95rem;
+    display: inline-block;
+    color: var(--text-light);
+  }
+  
+  /* OCR TEXT */
+  .ocr-text {
+    margin-top: 1.5rem;
+    text-align: left;
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  
+  .ocr-text p {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 480px) {
+    .wrapper {
+      padding: 1rem;
+    }
+    h1 {
+      font-size: 1.6rem;
+    }
+    .logo {
+      width: 60px;
+    }
+    button {
+      font-size: 1em;
+      padding: 0.5em 0.6em;
+    }
+    .ocr-text {
+      max-height: 120px;
+    }
+  }
+  

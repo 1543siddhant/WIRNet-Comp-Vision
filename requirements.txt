@@ -1,0 +1,10 @@
+flask
+ultralytics
+opencv-python-headless
+numpy
+Pillow
+networkx
+Shapely
+pytesseract
+requests
+python-dotenv

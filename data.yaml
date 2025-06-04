@@ -1,0 +1,8 @@
+# data.yaml
+
+# Full absolute paths (use forward‐slashes on Windows)
+train: D:/CV_Wires/WIRNet-Comp-Vision/WIRNet-Comp-Vision.v1i.yolov8-obb/train/images
+val:   D:/CV_Wires/WIRNet-Comp-Vision/WIRNet-Comp-Vision.v1i.yolov8-obb/valid/images
+
+nc: 3
+names: ['main', 'switch', 'wall']

@@ -1,0 +1,68 @@
+<!-- File: templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Floorplan Wiring Path Finder</title>
+  <!-- Make sure this path matches where you store style.css in your Flask/static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="wrapper">
+    <!-- HEADER / LOGO AREA -->
+    <header>
+      <!-- Replace 'logo.png' with your actual logo filename, or remove this <img> if you don't have one -->
+      <img src="{{ url_for('static', filename='images/logo3.png') }}" alt="App Logo" class="logo" />
+      <h1>Floorplan Wiring Path Finder</h1>
+    </header>
+
+    <!-- FLASH MESSAGES (success / error) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flashes">
+          {% for category, message in messages %}
+            <!-- category should be either 'success' or 'error' -->
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- UPLOAD FORM -->
+    <form method="post" class="form" enctype="multipart/form-data">
+      <label for="image">Choose Floorplan Image:</label>
+      <input type="file" name="image" id="image" accept="image/*" required />
+
+      <div class="container">
+        <button type="submit">Upload &amp; Analyze</button>
+      </div>
+    </form>
+
+    <!-- RESULT SECTION (only shows if result_image is provided) -->
+    {% if result_image %}
+      <div class="result">
+        <div class="counts">
+          <p><strong>Wiring Length:</strong> {{ length_ft }} ft</p>
+        </div>
+
+        <div class="counts">
+          <p><strong>Waypoints:</strong></p>
+          <ul class="waypoint-list">
+            {% for x,y in waypoints %}
+              <li>({{ '%.1f'|format(x) }}, {{ '%.1f'|format(y) }})</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="ocr-text">
+          <p><strong>OCR Text:</strong></p>
+          <p>{{ ocr_text.replace('\n','<br>')|safe }}</p>
+        </div>
+
+        <img src="{{ result_image }}" alt="Result path overlaid" />
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
